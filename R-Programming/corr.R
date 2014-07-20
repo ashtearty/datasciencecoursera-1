@@ -23,19 +23,21 @@ corr <- function (directory, threshold = 0)
 {
     data_frame <- complete(directory)
     data_filter_threshold <- which(data_frame$nobs>threshold)
-    file_list <- list.files(directory, full.names=TRUE)
+    full_file_list <- list.files(directory, full.names=TRUE)
+    
     correlation <- c()
-    inc <- 1
+    increment <- 1
+    
     if (length(data_filter_threshold) == 0)
     {
-        correlation <- c()
+        correlation
     }
-    for (i in data_filter_threshold)
+    for (iterator in data_filter_threshold)
     {
-        info <- read.csv(file_list[i])
-        test <- na.omit(info)
-        correlation[inc] <- cor(test[,2],test[,3])
-        inc <- inc + 1
+        data_for_corr_all <- read.csv(full_file_list[iterator])
+        data_for_corr <- na.omit(data_for_corr_all)
+        correlation[increment] <- cor(data_for_corr[,2],data_for_corr[,3])
+        increment <- increment + 1
         
     }
     correlation
