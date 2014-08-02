@@ -37,8 +37,7 @@ corr <- function (directory, threshold = 0)
         data_for_corr_all <- read.csv(full_file_list[iterator])
         data_for_corr <- na.omit(data_for_corr_all)
         correlation[increment] <- cor(data_for_corr[,2],data_for_corr[,3])
-        increment <- increment + 1
-        
+        increment <- increment + 1        
     }
     correlation
 }
