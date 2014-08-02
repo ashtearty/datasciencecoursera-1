@@ -1,20 +1,15 @@
-outcome <- read.csv("outcome-of-care-measures.csv", colClasses = "character")
+# Source: https://github.com/arunsimha/ProgrammingAssignment3/blob/master/best.R
 
+# best function takes state and outcome as inputs
+# returns name of the hospital with best outcome
 
-
-head(outcome)
-ncol(outcome)
-
-outcome[,11] <- as.numeric(outcome[,11])
-hist(outcome[,11])
-
-outcome[,13] <- as.numeric(outcome[,13])
-hist(outcome[,13])
+# Using submit() script passes Test 1 and Test 2, fails on Test 3 best 
+# ("TX", "pneumonia")
+# not taking care of NA and Not Availables properly
 
 best <- function(state, outcome) {
     
     ## Read outcome data
-    #setwd("C:/Users/Arun/Desktop/Assignment 3 Code/rprog-data-ProgAssignment3-data/")
     outcome_data <- read.csv("outcome-of-care-measures.csv", colClasses = "character")
     
     ## Define baseline, 
@@ -49,5 +44,3 @@ best <- function(state, outcome) {
     # return first row's hospital name in that state with lowest 30-day death rate
     return(ordered_bystate_data[1, 1])
 }
-
-best("TX", "heart attack")
